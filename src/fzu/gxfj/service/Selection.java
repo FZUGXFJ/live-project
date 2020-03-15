@@ -15,19 +15,21 @@ public class Selection {
      */
     public void select(AppointmentInfo newestInfo) {
         AppointmentDAO appointmentDAO = new AppointmentDAO();
-        List<Appointment> appointmentList = appointmentDAO.listAppointedThisTurn();
+        List<Appointment> appointmentList = AppointmentDAO.listAppointedThisTurn();
         int maxMask = newestInfo.getMaskNum();
-        Collections.shuffle(appointmentList);
-        for (Appointment appointment : appointmentList) {
-            if (appointment.getAppointmentNum() <= maxMask) {
-                appointment.setWin(true);
-                maxMask -= appointment.getAppointmentNum();
-                if (maxMask <= 0) {
-                    break;
+        if (appointmentList != null) {
+            Collections.shuffle(appointmentList);
+            for (Appointment appointment : appointmentList) {
+                if (appointment.getAppointmentNum() <= maxMask) {
+                    appointment.setWin(true);
+                    maxMask -= appointment.getAppointmentNum();
+                    if (maxMask <= 0) {
+                        break;
+                    }
+                    AppointmentDAO.update(appointment);
                 }
-                appointmentDAO.update(appointment);
             }
         }
-        new AppointmentInfoDAO().updateMaxNum(maxMask);
+        AppointmentInfoDAO.updateMaxNum(maxMask);
     }
 }
