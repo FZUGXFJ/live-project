@@ -1,19 +1,19 @@
 package fzu.gxfj.pojo;
 
 public class Appointment {
-    private int id;
-    private boolean isWin;
-    private int appointmentsID;
-    private int appointmentNum;
+    private Integer id;
+    private Boolean isWin;
+    private Integer appointmentsID;
+    private Integer appointmentNum;
     private String userName;
     private String userId;
     private String userPhone;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -25,19 +25,19 @@ public class Appointment {
         isWin = win;
     }
 
-    public int getAppointmentsID() {
+    public Integer getAppointmentsID() {
         return appointmentsID;
     }
 
-    public void setAppointmentsID(int appointmentsID) {
+    public void setAppointmentsID(Integer appointmentsID) {
         this.appointmentsID = appointmentsID;
     }
 
-    public int getAppointmentNum() {
+    public Integer getAppointmentNum() {
         return appointmentNum;
     }
 
-    public void setAppointmentNum(int appointmentNum) {
+    public void setAppointmentNum(Integer appointmentNum) {
         this.appointmentNum = appointmentNum;
     }
 
