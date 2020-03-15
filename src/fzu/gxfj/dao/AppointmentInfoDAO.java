@@ -15,7 +15,7 @@ public class AppointmentInfoDAO {
      */
     public static AppointmentInfo getLastAppointmentInfo() {
         AppointmentInfo appointment = null;
-        String sql = "SELECT * FROM appointmentinfo ORDER BY endTime DESC LIMIT 1";
+        String sql = "SELECT * FROM appointmentinfo ORDER BY id DESC LIMIT 1";
 
         try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
 
@@ -25,8 +25,13 @@ public class AppointmentInfoDAO {
             appointment = new AppointmentInfo();
 
             appointment.setId(rs.getInt("id"));
+<<<<<<< HEAD
             appointment.setBeginTime(new Date(rs.getTimestamp("beginTime").getTime()));
             appointment.setEndTime(new Date(rs.getTimestamp("endTime").getTime()));
+=======
+            appointment.setBeginTime(DateUtil.t2d(rs.getTimestamp("beginTime")));
+            appointment.setEndTime(DateUtil.t2d(rs.getTimestamp("endTime")));
+>>>>>>> cc739382c1ffa19ee021135d39252b23e3418788
             appointment.setMaskNum(rs.getInt("maskNum"));
             appointment.setMaxMaskAppointment(rs.getInt("maxMaskAppointment"));
         } catch (SQLException e) {
@@ -46,18 +51,17 @@ public class AppointmentInfoDAO {
         String sql = "INSERT INTO appointmentinfo VALUES (0, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+<<<<<<< HEAD
             preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd HH:mm:ss"));
             preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime(), "yyyy-MM-dd HH:mm:ss"));
+=======
+            preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime()));
+            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime()));
+>>>>>>> cc739382c1ffa19ee021135d39252b23e3418788
             preparedStatement.setInt(3, appointmentInfo.getMaskNum());
             preparedStatement.setInt(4, appointmentInfo.getMaxMaskAppointment());
             preparedStatement.execute();
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (rs.next()) {
-                int id = rs.getInt(1);
-                appointmentInfo.setId(id);
-            }
-        } catch (SQLException e)
-        {
+        } catch (SQLException e){
             e.printStackTrace();
             return false;
         }
