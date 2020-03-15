@@ -52,4 +52,9 @@ public class AppointmentInfoDAO {
         return true;
     }
 
+    //修改最大口罩数
+    public boolean updateMaxNum(int maxNum){
+    return true;
+    }
+
 }
