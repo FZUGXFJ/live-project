@@ -57,4 +57,8 @@ public class AppointmentInfoDAO {
     return true;
     }
 
+    public boolean update(AppointmentInfo appointmentInfo){
+        return true;
+    }
+
 }
