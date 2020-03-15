@@ -51,11 +51,7 @@ public class AppointmentInfoDAO {
             preparedStatement.setInt(3, appointmentInfo.getMaskNum());
             preparedStatement.setInt(4, appointmentInfo.getMaxMaskAppointment());
             preparedStatement.execute();
-            ResultSet rs = preparedStatement.getGeneratedKeys();
-            if (rs.next()) {
-                int id = rs.getInt(1);
-                appointmentInfo.setId(id);
-            }
+            
         } catch (SQLException e)
         {
             e.printStackTrace();
