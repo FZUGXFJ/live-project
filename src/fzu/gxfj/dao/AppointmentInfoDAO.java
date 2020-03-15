@@ -26,7 +26,7 @@ public class AppointmentInfoDAO {
             appointment.setMaskNum(rs.getInt("maskNum"));
             appointment.setMaxMaskAppointment(rs.getInt("maxMaskAppointment"));
         } catch (SQLException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
 
         return appointment;
@@ -54,7 +54,7 @@ public class AppointmentInfoDAO {
             }
         } catch (SQLException e)
         {
-            e.getStackTrace();
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -116,6 +116,11 @@ public class AppointmentInfoDAO {
 
         sql += " WHERE id = " + last.getId() + " ";
 
+        try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return true;
     }
