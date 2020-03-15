@@ -10,7 +10,7 @@ import java.util.List;
 
 public class AppointmentDAO {
     //通过场次id获取制定场次中奖名单，筛选isWin=1
-    public ArrayList<Appointment> getWin(int id) {
+    public static ArrayList<Appointment> getWin(int id) {
         ArrayList<Appointment> winners = null;
         String sql = "SELECT * FROM appointment WHERE isWin = TRUE AND id = " + id + " ";
 
@@ -38,14 +38,50 @@ public class AppointmentDAO {
         return winners;
     }
 
-    public List<Appointment> listAppointedThisTurn() {
+    public static List<Appointment> listAppointedThisTurn() {
         return null;
     }
 
-    public void update (Appointment appointment) {}
+    public static boolean update (Appointment appointment) {
+        String sql = "UPDATE appointment SET ";
+        if (appointment.getId() != null){
+            sql += " id = " + appointment.getId() + " ";
+        }
+        else
+            return false;
+        if (appointment.isWin() != null){
+            sql += " , isWin = " +  appointment.isWin() + " ";
+        }
+        if (appointment.getAppointmentsID() != null){
+            sql += " , appointmentId = " +  appointment.getAppointmentsID() + " ";
+        }
+        if (appointment.getAppointmentNum() != null){
+            sql += " , appointNum = " + appointment.getAppointmentNum() + " ";
+        }
+        if (appointment.getUserName() != null){
+            sql += ", userName = " + appointment.getUserName() + " ";
+        }
+        if (appointment.getUserId() != null){
+            sql += " , userId = " + appointment.getUserId() + " ";
+        }
+        if (appointment.getUserPhone() != null){
+            sql += " , userPhone = " + appointment.getUserPhone() + " ";
+        }
+        sql += " WHERE id = " + appointment.getId() + " ; ";
+
+        try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+
+        return true;
+    }
 
     //根据编号获得appoint的数据
-    public Appointment getAppointment(String number) {
+    public static Appointment getAppointment(String number) {
         Appointment appointment = null;
         String sql = "SELECT * FROM appointment WHERE id = " + number + " ";
 
@@ -70,7 +106,7 @@ public class AppointmentDAO {
         return appointment;
     }
     //将预约成功的市民插入数据库
-    public boolean add(Appointment appointment) {
+    public static boolean insert(Appointment appointment) {
         String sql = "INSERT INTO appointment VALUES (0, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

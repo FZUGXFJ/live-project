@@ -44,9 +44,9 @@ public class AdminSetServlet extends BaseServlet {
 		String endDate = request.getParameter("endDate");
 		String beginTime = request.getParameter("beginTime");
 		String endTime = request.getParameter("endTime");
-		String maskNum = request.getParameter("maskNum");//口罩总数
-		int maxAppointment = Integer.parseInt(request.getParameter("maskNum"));//单人最高可预约数量
-		int id;//预约编号
+		String maskNum = request.getParameter("maskNum");//鍙ｇ僵鎬绘暟
+		int maxAppointment = Integer.parseInt(request.getParameter("maskNum"));//鍗曚汉鏈�楂樺彲棰勭害鏁伴噺
+		int id;//棰勭害缂栧彿
 		
 		if((beginDate!=null)&&(endDate!=null)&&(beginTime!=null)&&(endTime!=null)&&(maskNum!=null)) {
 			int maskNums = Integer.parseInt(maskNum);
@@ -55,7 +55,7 @@ public class AdminSetServlet extends BaseServlet {
 			Date begin2 = stringToDate(begin1);
 			Date end2 = stringToDate(end1);
 			
-			//设置AppointmentInfo信息
+			//璁剧疆AppointmentInfo淇℃伅
 			AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
 			AppointmentInfo appointmentInfo = new AppointmentInfo();
 			
@@ -64,7 +64,7 @@ public class AdminSetServlet extends BaseServlet {
 			appointmentInfo.setMaskNum(maskNums);
 			appointmentInfo.setMaxMaskAppointment(maxAppointment);
 			
-			appointmentInfoDAO.insert(appointmentInfo);
+			AppointmentInfoDAO.insert(appointmentInfo);
 		}
 		
 		

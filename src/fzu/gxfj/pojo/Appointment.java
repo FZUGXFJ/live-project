@@ -17,7 +17,7 @@ public class Appointment {
         this.id = id;
     }
 
-    public boolean isWin() {
+    public Boolean isWin() {
         return isWin;
     }
 
