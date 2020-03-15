@@ -46,14 +46,12 @@ public class AppointmentInfoDAO {
         String sql = "INSERT INTO appointmentinfo VALUES (0, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd hh:mm:ss"));
-            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime(), "yyyy-MM-dd hh:mm:ss"));
+            preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime()));
+            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime()));
             preparedStatement.setInt(3, appointmentInfo.getMaskNum());
             preparedStatement.setInt(4, appointmentInfo.getMaxMaskAppointment());
             preparedStatement.execute();
-            
-        } catch (SQLException e)
-        {
+        } catch (SQLException e){
             e.printStackTrace();
             return false;
         }
