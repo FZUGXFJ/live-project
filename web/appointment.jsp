@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
+<%@ page import="fzu.gxfj.pojo.AppointmentInfo" %>
+<%@ page import="fzu.gxfj.pojo.Appointment" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,6 +39,9 @@
 
         }
         request.setAttribute("basePath", basePath);
+        AppointmentInfo info = new AppointmentInfo();
+        request.setAttribute("beginTime",info.getBeginTime());
+        request.setAttribute("endTime",info.getEndTime());
     %>
 </head>
 <body>
@@ -78,7 +83,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td class="info"><span>2020-03-15 10:00</span> 至 <span>2020-03-15 16:00</span></td>
+            <td class="info"><span><%=info.getBeginTime()%></span> 至 <span><%=info.getBeginTime()%></span></td>
         </tr>
         
     </table>
@@ -87,10 +92,10 @@
         <table>
             <tr>
                 <td class="info" align="right">口罩总数:</td>
-                <td><input type="number" name="age" id="sum" min="1" max="100"/></td>
+                <td><input type="number" name="maskNum" id="sum" min="1" max="100"/></td>
             </tr>
             <tr>
-                <td>&nbsp;&nbsp;<input class="btn" type="submit" value="设置"/></td>
+                <td></td>
                 <td><input class="btn" type="submit" value="开始预约"></td>
             </tr>
         </table>

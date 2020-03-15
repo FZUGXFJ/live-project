@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.xdevapi.Result;
 import com.sun.org.apache.bcel.internal.generic.Select;
 
 import fzu.gxfj.dao.AppointmentDAO;
@@ -45,18 +44,18 @@ public class AppointmentServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String flag = request.getParameter("flag");
 		String result = null;
-		if(flag != null && flag.equals("Ô¤Ô¼")) {
+		if(flag != null && flag.equals("é¢„çº¦")) {
 			result = appoint();
 		}
-		else if(flag != null && flag.equals("Éè¶¨¿ÚÕÖ×Ü¼Æ")){
+		else if(flag != null && flag.equals("è®¾å®šå£ç½©æ€»è®¡")){
 			result = setMaxNum();
 		}
-		else if(flag != null && flag.equals("Í£Ö¹Ô¤Ô¼")) {
+		else if(flag != null && flag.equals("åœæ­¢é¢„çº¦")) {
 			result = stopAppoint();
 		}
 		
 		/**
-		 * Èç¹ûÊÇ×ªµ½Ô¤Ô¼½çÃæ£¬ÉèÖÃ²ÎÊı
+		 * å¦‚æœæ˜¯è½¬åˆ°é¢„çº¦ç•Œé¢ï¼Œè®¾ç½®å‚æ•°
 		 */
 		if(result.equals("Appointment.jsp")) {
 			AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
@@ -64,7 +63,7 @@ public class AppointmentServlet extends HttpServlet {
 			int maxAppointment = appointmentInfo.getMaxAppointment();
 			Date beginTime = appointmentInfo.getBeginTime();
 			Date endTime = appointmentInfo.getEndTime();
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//ÉèÖÃÈÕÆÚ¸ñÊ½
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼
 			String beginTimeString = df.format(beginTime);
 			String endTimeString = df.format(endTime);
 			request.setAttribute("maxAppointment", maxAppointment);
@@ -83,25 +82,25 @@ public class AppointmentServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	/*´¦ÀíÔ¤Ô¼±íµ¥*/
+	/*å¤„ç†é¢„çº¦è¡¨å•*/
 	private String appoint() {
 		String result;
 		String userName =  request.getParameter("name");
 		String userID = request.getParameter("ID");
 		String userTelephoneNum = request.getParameter("telephoneNum");
 		String appointmentNum = request.getParameter("num");
-		//¼ì²â±íµ¥ÊÇ·ñÎª¿Õ
+		//æ£€æµ‹è¡¨å•æ˜¯å¦ä¸ºç©º
 		if(userName == null || userID == null || userTelephoneNum == null || appointmentNum == null) {
-			request.setAttribute("error", "±íµ¥Îª¿Õ£¡");
+			request.setAttribute("error", "è¡¨å•ä¸ºç©ºï¼");
 			result = "Appointment.jsp";
 		}
 		else {
-			//Ô¤Ô¼³É¹¦£¬²åÈëÊı¾İ¿â
+			//é¢„çº¦æˆåŠŸï¼Œæ’å…¥æ•°æ®åº“
 			Appointment appointment = new Appointment(userName , userID , userTelephoneNum , appointmentNum);
 			AppointmentDAO appointmentDAO = new AppointmentDAO();
 			appointmentDAO.add(appointment);
-			//½«Ô¤Ô¼³É¹¦ÉèÎª²ÎÊı£¬×ªµ½Ê×Ò³
-			request.setAttribute("remind", "Ô¤Ô¼³É¹¦");
+			//å°†é¢„çº¦æˆåŠŸè®¾ä¸ºå‚æ•°ï¼Œè½¬åˆ°é¦–é¡µ
+			request.setAttribute("remind", "é¢„çº¦æˆåŠŸ");
 			result = "index.jsp";
 		}
 		return result;
@@ -110,9 +109,9 @@ public class AppointmentServlet extends HttpServlet {
 	private String setMaxNum() {
 		String result;
 		String maxNum = request.getParameter("maxNum");
-		//¼ìÑé±íµ¥ÊÇ·ñÎª¿Õ
+		//æ£€éªŒè¡¨å•æ˜¯å¦ä¸ºç©º
 		if(maxNum == null ) {
-			request.setAttribute("error", "±íµ¥Îª¿Õ£¡");
+			request.setAttribute("error", "è¡¨å•ä¸ºç©ºï¼");
 			result = "Appointment.jsp";
 		}
 		else {
@@ -126,15 +125,15 @@ public class AppointmentServlet extends HttpServlet {
 	
 	private String stopAppoint() {
 		String result;
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//ÉèÖÃÈÕÆÚ¸ñÊ½
-        String endDate = df.format(new Date());// new Date()Îª»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼
+        String endDate = df.format(new Date());// new Date()ä¸ºè·å–å½“å‰ç³»ç»Ÿæ—¶é—´
         AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
         AppointmentInfo appointmentInfo = AppointmentInfoDAO.getLastAppointmentInfo();
         appointmentInfo.setEndingTime(endDate);
         appointmentInfoDAO.update(appointmentInfo);
         Selection selection = new Selection();
         selection.select(appointmentInfo);
-        request.setAttribute("remind", "Ô¤Ô¼½áÊø");
+        request.setAttribute("remind", "é¢„çº¦ç»“æŸ");
         result = "index.jsp";
 
 	}
