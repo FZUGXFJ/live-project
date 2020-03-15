@@ -16,13 +16,13 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         function yy(){
-            window.location.href="indexServlet?action=预约";
+            window.location.href="appointment.jsp";
         }
         function cx(){
-            window.location.href="indexServlet?action=查询";
+            window.location.href="select.jsp";
         }
         function dl(){
-            window.location.href="indexServlet?action=管理员登录";
+            window.location.href="adminlogin.jsp";
         }
     </script>
 

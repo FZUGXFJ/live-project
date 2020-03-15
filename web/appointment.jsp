@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
 <%@ page import="fzu.gxfj.pojo.AppointmentInfo" %>
 <%@ page import="fzu.gxfj.pojo.Appointment" %>
+<%@ page import="fzu.gxfj.dao.AppointmentInfoDAO" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
