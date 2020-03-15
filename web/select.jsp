@@ -1,20 +1,21 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>查询</title>
 
-    <link href="css/style1.css" rel="stylesheet">
+    <link href="CSS/selectStyle.css" rel="stylesheet" type="text/css" charset="UTF-8">
 </head>
 <body>
     <div id="wrap">
         <div id="main">
+            <br/><br/><br/>
             <center>
-            <form id="selectid" action="userServlet?action=search" method="post">
+            <form id="selectid" action="inquireServlet?action=search" method="post">
                 <fieldset>
                 <legend>查询摇号信息</legend>
-                编码:<input type="text"><br/><br/><br/>
+                编码:<input type="text" name="number"><br/><br/><br/>
                 <input type="submit" value="查询">
                 </fieldset>
             </form>

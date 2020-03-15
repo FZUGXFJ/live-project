@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理员登录</title>
-    <link href="css/style1.css" rel="stylesheet">
+    <link href="CSS/indexStyle.css" rel="stylesheet">
 </head>
 <body>
     <div id="wrap">

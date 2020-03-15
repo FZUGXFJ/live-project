@@ -2,16 +2,15 @@ body{
      min-width: 750px;
 }
 #wrap{
-    background-image: url("../image/21.jpg");
+    background-image: url("/image/index.jpg");
     background-repeat: repeat;
     height: 700px;
-    width: 750px;
+    width: 650px;
     margin: 0 auto;
-    background-color: brown;
 }
 #main{
     height: 700px;
-    width: 700px;
+    width: 650px;
     margin: 0 auto;
 }
 #selectid{
@@ -21,4 +20,10 @@ body{
 #login{
     text-align: center;
     padding-top: 100px;
+}
+#main1{
+    margin: 0 auto;
+    text-align: center;
+    width: 500px;
+    height: 500px;
 }

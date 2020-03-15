@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="CSS/style.css"/>
+    <link rel="stylesheet" href="CSS/selectStyle.css"/>
     <title>Title</title>
+    <script>
+        function exportlist(){
+            window.location.href="servlet";
+        }
+    </script>
 </head>
 <body>
 <div id="wrap">
@@ -41,7 +46,7 @@
                 <td>&nbsp;</td>
                 <td><input class="btn" type="submit" value="设置"/>&nbsp;&nbsp;
                     <input class="btn" type="reset" value="重置"/>&nbsp;&nbsp;
-                    <input class="btn" type="submit" value="导出名单"/>
+                    <input class="btn" type="button" value="导出名单" onclick="exportlist()"/>
                 </td>
                 <td>&nbsp;</td>
             </tr>
