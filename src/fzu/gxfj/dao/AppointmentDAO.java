@@ -11,7 +11,11 @@ import java.util.List;
 public class AppointmentDAO {
     //通过场次id获取制定场次中奖名单，筛选isWin=1
     public ArrayList<Appointment> getWin(int id) {
-        return null;
+        ArrayList<Appointment> winners = null;
+
+
+
+        return winners;
     }
 
     public List<Appointment> listAppointedThisTurn() {
@@ -23,7 +27,7 @@ public class AppointmentDAO {
     //根据编号获得appoint的数据
     public Appointment getAppointment(String number) {
         Appointment appointment = null;
-        String sql = "SELECT * FROM appointmentinfo WHERE id = " + number + " ";
+        String sql = "SELECT * FROM appointment WHERE id = " + number + " ";
 
         try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
