@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class AdminDAO {
 	public static Admin getAdminUser(String account) {
 		Admin admin = null;
-		String sql = "SELECT * FROM admin WHERE account = " + account + " ; ";
+		String sql = "SELECT * FROM admin WHERE account = '" + account + "' ; ";
 
 		try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
 			ResultSet resultSet = statement.executeQuery("sql");
