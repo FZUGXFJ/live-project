@@ -42,7 +42,43 @@ public class AppointmentDAO {
         return null;
     }
 
-    public void update (Appointment appointment) {}
+    public boolean update (Appointment appointment) {
+        String sql = "UPDATE appointment SET ";
+        if (appointment.getId() != null){
+            sql += " id = " + appointment.getId() + " ";
+        }
+        else
+            return false;
+        if (appointment.isWin() != null){
+            sql += " , isWin = " +  appointment.isWin() + " ";
+        }
+        if (appointment.getAppointmentsID() != null){
+            sql += " , appointmentId = " +  appointment.getAppointmentsID() + " ";
+        }
+        if (appointment.getAppointmentNum() != null){
+            sql += " , appointNum = " + appointment.getAppointmentNum() + " ";
+        }
+        if (appointment.getUserName() != null){
+            sql += ", userName = " + appointment.getUserName() + " ";
+        }
+        if (appointment.getUserId() != null){
+            sql += " , userId = " + appointment.getUserId() + " ";
+        }
+        if (appointment.getUserPhone() != null){
+            sql += " , userPhone = " + appointment.getUserPhone() + " ";
+        }
+        sql += " WHERE id = " + appointment.getId() + " ; ";
+
+        try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+
+        return true;
+    }
 
     //根据编号获得appoint的数据
     public Appointment getAppointment(String number) {
