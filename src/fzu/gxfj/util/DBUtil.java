@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUtil {
-	static String ip = "127.0.0.1";
+	static String ip = "rm-bp14o41ej3bmkq69r3o.mysql.rds.aliyuncs.com";
 	static int port = 3306;
-	static String database = "tmall";
+	static String database = "live_project";
 	static String encoding = "UTF-8";
 	static String loginName = "root";
-	static String password = "root";
+	static String password = "ZCXzcx123450";
 
 	static {
 		try {
