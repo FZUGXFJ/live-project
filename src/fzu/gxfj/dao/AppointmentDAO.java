@@ -12,9 +12,29 @@ public class AppointmentDAO {
     //通过场次id获取制定场次中奖名单，筛选isWin=1
     public ArrayList<Appointment> getWin(int id) {
         ArrayList<Appointment> winners = null;
+        String sql = "SELECT * FROM appointment WHERE isWin = TRUE AND id = " + id + " ";
 
+        try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            resultSet.next();
 
+            winners = new ArrayList<>();
+            Appointment appointment = new Appointment();
 
+            while(resultSet.next()){
+                appointment.setId(resultSet.getInt("id"));
+                appointment.setWin(resultSet.getBoolean("isWin"));
+                appointment.setAppointmentsID(resultSet.getInt("appointmentID"));
+                appointment.setAppointmentNum(resultSet.getInt("appointmentNum"));
+                appointment.setUserName(resultSet.getString("userName"));
+                appointment.setUserId(resultSet.getString("userId"));
+                appointment.setUserPhone(resultSet.getString("userPhone"));
+                winners.add(appointment);
+                appointment = new Appointment();
+            }
+        } catch (SQLException e) {
+
+        }
         return winners;
     }
 
@@ -34,6 +54,7 @@ public class AppointmentDAO {
             resultSet.next();
 
             appointment = new Appointment();
+
             appointment.setId(resultSet.getInt("id"));
             appointment.setAppointmentNum(resultSet.getInt("appointmentNum"));
             appointment.setAppointmentsID(resultSet.getInt("appointmnetId"));
