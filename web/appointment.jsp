@@ -39,9 +39,7 @@
 
         }
         request.setAttribute("basePath", basePath);
-        AppointmentInfo info = new AppointmentInfo();
-        request.setAttribute("beginTime",info.getBeginTime());
-        request.setAttribute("endTime",info.getEndTime());
+        AppointmentInfo info = AppointmentInfoDAO.getLastAppointmentInfo();
     %>
 </head>
 <body>
