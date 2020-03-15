@@ -38,7 +38,7 @@ public class AppointmentInfoDAO {
      */
     public boolean insert(AppointmentInfo appointmentInfo) {
 
-        String sql = "INSERT INTO appointmentInfo VALUES (id, ?, ?, ?, ?)";
+        String sql = "INSERT INTO appointmentInfo VALUES (0, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd hh:mm:ss"));
