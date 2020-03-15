@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fzu.gxfj.dao.AdminDao;
+import fzu.gxfj.dao.AdminDAO;
 import fzu.gxfj.pojo.Admin;
 
 /**
@@ -35,8 +35,8 @@ public class AdminLoginServlet extends BaseServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		if(account != null && password != null) {
-			AdminDao adminDAO = new AdminDao();
-			Admin admin = adminDAO.getAdminUser(account);
+			AdminDAO adminDAO= new AdminDAO();
+			Admin admin = AdminDAO.getAdminUser(account);
 			if(admin != null && admin.getPassword().equals(password))
 				request.getRequestDispatcher("Setup.jsp").forward(request, response);
 			request.setAttribute("hint", "没有此用户");//返回提示信息
