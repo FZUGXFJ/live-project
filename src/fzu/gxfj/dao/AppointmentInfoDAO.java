@@ -1,6 +1,5 @@
 package fzu.gxfj.dao;
 
-import fzu.gxfj.pojo.Appointment;
 import fzu.gxfj.pojo.AppointmentInfo;
 import fzu.gxfj.util.DBUtil;
 import fzu.gxfj.util.DateUtil;
@@ -62,9 +61,6 @@ public class AppointmentInfoDAO {
 
     //修改最大口罩数
     public boolean updateMaxNum(int maxNum){
-        AppointmentInfo appointmentInfo = new AppointmentInfo();
-        appointmentInfo.setMaskNum(maxNum);
-
         return true;
     }
 
@@ -119,5 +115,8 @@ public class AppointmentInfoDAO {
 
         return true;
     }
-
+	
+	public int getCount() {///获取AppointmentInfo表记录总数
+		return 0;
+	}
 }
