@@ -3,6 +3,7 @@ body{
 }
 #wrap{
     background-image: url("../image/21.jpg");
+    background-repeat: repeat;
     height: 700px;
     width: 750px;
     margin: 0 auto;
@@ -16,4 +17,8 @@ body{
 #selectid{
    position: relative;
    
+}
+#login{
+    text-align: center;
+    padding-top: 100px;
 }
