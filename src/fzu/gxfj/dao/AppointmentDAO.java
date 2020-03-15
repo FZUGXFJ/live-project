@@ -2,11 +2,9 @@ package fzu.gxfj.dao;
 
 import fzu.gxfj.pojo.Appointment;
 import fzu.gxfj.util.DBUtil;
+import fzu.gxfj.util.DateUtil;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +45,28 @@ public class AppointmentDAO {
         return appointment;
     }
     //将预约成功的市民插入数据库
-    public void add(Appointment appointment) {
+    public boolean add(Appointment appointment) {
+        String sql = "INSERT INTO appointment VALUES (0, ?, ?, ?, ?, ?, ?)";
 
+        try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setBoolean(1, appointment.isWin());
+            preparedStatement.setInt(2, appointment.getAppointmentsID());
+            preparedStatement.setInt(3, appointment.getAppointmentNum());
+            preparedStatement.setString(4, appointment.getUserName());
+            preparedStatement.setString(5, appointment.getUserId());
+            preparedStatement.setString(6, appointment.getUserPhone());
+
+            preparedStatement.execute();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                appointment.setId(id);
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

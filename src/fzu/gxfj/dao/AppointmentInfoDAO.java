@@ -1,5 +1,6 @@
 package fzu.gxfj.dao;
 
+import fzu.gxfj.pojo.Appointment;
 import fzu.gxfj.pojo.AppointmentInfo;
 import fzu.gxfj.util.DBUtil;
 import fzu.gxfj.util.DateUtil;
@@ -36,7 +37,7 @@ public class AppointmentInfoDAO {
      * @param appointmentInfo 要插入的场次信息，成功后的Id为在数据库中的Id
      * @return
      */
-    public boolean insert(AppointmentInfo appointmentInfo) {
+    public boolean add(AppointmentInfo appointmentInfo) {
 
         String sql = "INSERT INTO appointmentInfo VALUES (0, ?, ?, ?, ?)";
 
@@ -61,7 +62,10 @@ public class AppointmentInfoDAO {
 
     //修改最大口罩数
     public boolean updateMaxNum(int maxNum){
-        return true;
+        AppointmentInfo appointment = new AppointmentInfo();
+
+        appointment.setMaxMaskAppointment(maxNum);
+        return updateLast(appointment);
     }
 
     /**
