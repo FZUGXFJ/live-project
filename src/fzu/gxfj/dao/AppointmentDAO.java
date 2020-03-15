@@ -14,4 +14,6 @@ public class AppointmentDAO {
 
     //根据编号获得appoint的数据
     public Appointment getAppointment(String number);
+    //将预约成功的市民插入数据库
+    public void add(Appointment appointment);
 }
