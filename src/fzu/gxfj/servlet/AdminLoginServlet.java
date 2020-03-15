@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fzu.gxfj.dao.AdminDAO;
+import fzu.gxfj.dao.AdminDao;
 import fzu.gxfj.pojo.Admin;
 
 /**
@@ -35,15 +35,15 @@ public class AdminLoginServlet extends BaseServlet {
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
 		if(account != null && password != null) {
-			AdminDAO adminDAO = new AdminDAO();
+			AdminDao adminDAO = new AdminDao();
 			Admin admin = adminDAO.getAdminUser(account);
 			if(admin != null && admin.getPassword().equals(password))
 				request.getRequestDispatcher("Setup.jsp").forward(request, response);
-			request.setAttribute("hint", "Ã»ÓĞ´ËÓÃ»§");//·µ»ØÌáÊ¾ĞÅÏ¢
+			request.setAttribute("hint", "æ²¡æœ‰æ­¤ç”¨æˆ·");//è¿”å›æç¤ºä¿¡æ¯
 			request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
 		}
 		else {
-			request.setAttribute("hint", "ÓÃ»§ÃûºÍÃÜÂë²»ÄÜÎª¿Õ");//·µ»ØÌáÊ¾ĞÅÏ¢
+			request.setAttribute("hint", "ç”¨æˆ·åå’Œå¯†ç ä¸èƒ½ä¸ºç©º");//è¿”å›æç¤ºä¿¡æ¯
 			request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
 		}
 			

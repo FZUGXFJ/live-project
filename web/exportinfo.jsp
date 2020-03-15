@@ -10,7 +10,7 @@
 <body>
     <div id="wrap">
         <div id="main">
-            <p>结果:</p>
+            <p>结果:</p>.//
             <table border="1px">
                 <tr><th>姓名</th><th>身份证号</th><th>电话号</th><th>购买数量</th></tr>
             </table>
