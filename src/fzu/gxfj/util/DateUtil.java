@@ -1,6 +1,8 @@
 package fzu.gxfj.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
 public class DateUtil {
@@ -28,5 +30,16 @@ public class DateUtil {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
 
         return simpleDateFormat.format(d);
+    }
+
+    public static Date s2d(String dateStr) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date date = null;
+        try {
+            date = dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }
