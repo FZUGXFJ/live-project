@@ -39,10 +39,10 @@ public class DateUtil {
      */
     public static String d2s(java.util.Date d)
     {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         return simpleDateFormat.format(d);
-    }
+}
 
     public static Date s2d(String dateStr) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -55,3 +55,5 @@ public class DateUtil {
         return date;
     }
 }
+
+

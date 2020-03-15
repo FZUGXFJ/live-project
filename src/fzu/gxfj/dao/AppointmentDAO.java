@@ -115,7 +115,7 @@ public class AppointmentDAO {
         String sql = "INSERT INTO appointment VALUES (0, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setBoolean(1, appointment.isWin());
+            preparedStatement.setBoolean(1, false);
             preparedStatement.setInt(2, appointment.getAppointmentsID());
             preparedStatement.setInt(3, appointment.getAppointmentNum());
             preparedStatement.setString(4, appointment.getUserName());

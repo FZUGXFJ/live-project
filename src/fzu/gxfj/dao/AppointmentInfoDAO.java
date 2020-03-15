@@ -46,10 +46,10 @@ public class AppointmentInfoDAO {
         String sql = "INSERT INTO appointmentinfo VALUES (0, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd hh:mm:ss"));
-            preparedStatement.setString(3, DateUtil.d2s(appointmentInfo.getEndTime(), "yyyy-MM-dd hh:mm:ss"));
-            preparedStatement.setInt(4, appointmentInfo.getMaskNum());
-            preparedStatement.setInt(5, appointmentInfo.getMaxMaskAppointment());
+            preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd hh:mm:ss"));
+            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime(), "yyyy-MM-dd hh:mm:ss"));
+            preparedStatement.setInt(3, appointmentInfo.getMaskNum());
+            preparedStatement.setInt(4, appointmentInfo.getMaxMaskAppointment());
             preparedStatement.execute();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
@@ -92,14 +92,14 @@ public class AppointmentInfoDAO {
                 first = false;
             else
                 sql += " , ";
-            sql += " beginTime = " + DateUtil.d2s(appointmentInfo.getBeginTime(),"yyyy-MM-dd hh:mm:ss") + " ";
+            sql += " beginTime = '" + DateUtil.d2s(appointmentInfo.getBeginTime(),"yyyy-MM-dd HH:mm:ss") + "' ";
         }
         if (appointmentInfo.getEndTime() != null) {
             if (first)
                 first = false;
             else
                 sql += " , ";
-            sql += " endTime = " + DateUtil.d2s(appointmentInfo.getEndTime(),"yyyy-MM-dd hh:mm:ss") + " ";
+            sql += " endTime = '" + DateUtil.d2s(appointmentInfo.getEndTime(),"yyyy-MM-dd HH:mm:ss") + "' ";
         }
         if (appointmentInfo.getMaskNum() != null) {
             if (first)
