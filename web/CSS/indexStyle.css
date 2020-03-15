@@ -2,12 +2,11 @@ body{
      min-width: 750px;
 }
 #wrap{
-    background-image: url("../image/12.jpg");
+    background-image: url("/image/index.jpg");
     background-repeat: repeat;
     height: 700px;
     width: 650px;
     margin: 0 auto;
-    background-color: brown;
 }
 #main{
     height: 700px;

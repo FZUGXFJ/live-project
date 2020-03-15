@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="CSS/style.css"/>
+    <link rel="stylesheet" href="CSS/selectStyle.css"/>
     <title>Title</title>
 </head>
 <body>
