@@ -8,7 +8,6 @@ import fzu.gxfj.util.DateUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.SimpleFormatter;
 
 public class AppointmentInfoDAO {
 
