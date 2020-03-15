@@ -5,6 +5,15 @@ public class Subscriber {
     private String name;
     private String phoneNumber;
     private String orderCount;
+    private String subCode;
+
+    public Subscriber(String ID, String name, String phoneNumber, String orderCount, String subCode) {
+        this.ID = ID;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.orderCount = orderCount;
+        this.subCode = subCode;
+    }
 
     public Subscriber(String ID, String name, String phoneNumber, String orderCount) {
         this.ID = ID;
@@ -46,5 +55,14 @@ public class Subscriber {
 
     public void setOrderCount(String orderCount) {
         this.orderCount = orderCount;
+    }
+
+
+    public String getSubCode() {
+        return subCode;
+    }
+
+    public void setSubCode(String subCode) {
+        this.subCode = subCode;
     }
 }
