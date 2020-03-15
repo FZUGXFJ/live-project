@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8"%>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>口罩预约系统</title>
-    <link href="css/style1.css" rel="stylesheet">
+    <link href="CSS/indexStyle.css" rel="stylesheet" type="text/css" charset="UTF-8">
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -16,13 +16,13 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         function yy(){
-            window.location.href="appointment.html";
+            window.location.href="indexServlet?action=预约";
         }
         function cx(){
-            window.location.href="select.html";
+            window.location.href="indexServlet?action=查询";
         }
         function dl(){
-            window.location.href="adminlogin.html";
+            window.location.href="indexServlet?action=管理员登录";
         }
     </script>
 </head>
