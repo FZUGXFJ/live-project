@@ -9,6 +9,10 @@ import java.sql.*;
 
 public class AppointmentInfoDAO {
 
+    /**
+     * 获得最新的场次信息
+     * @return 返回最新的场次信息
+     */
     public static AppointmentInfo getLastAppointmentInfo() {
         AppointmentInfo appointment = null;
         String sql = "SELECT * FROM appointmentinfo ORDER BY endTime DESC LIMIT 1";

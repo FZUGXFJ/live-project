@@ -42,6 +42,11 @@ public class AppointmentDAO {
         return null;
     }
 
+    /**
+     * 更新appointment中的id对应的数据库的记录
+     * @param appointment
+     * @return
+     */
     public static boolean update (Appointment appointment) {
         String sql = "UPDATE appointment SET ";
         if (appointment.getId() != null){
