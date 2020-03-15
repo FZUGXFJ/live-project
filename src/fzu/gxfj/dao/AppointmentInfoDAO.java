@@ -25,6 +25,8 @@ public class AppointmentInfoDAO {
         {
             e.getStackTrace();
         }
+
+        return appointment;
     }
 
     public boolean insert(AppointmentInfo appointmentInfo)
