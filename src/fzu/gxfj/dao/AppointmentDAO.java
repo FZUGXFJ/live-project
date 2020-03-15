@@ -106,7 +106,7 @@ public class AppointmentDAO {
         return appointment;
     }
     //将预约成功的市民插入数据库
-    public boolean add(Appointment appointment) {
+    public boolean insert(Appointment appointment) {
         String sql = "INSERT INTO appointment VALUES (0, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

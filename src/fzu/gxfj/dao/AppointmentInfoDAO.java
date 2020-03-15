@@ -37,7 +37,7 @@ public class AppointmentInfoDAO {
      * @param appointmentInfo 要插入的场次信息，成功后的Id为在数据库中的Id
      * @return
      */
-    public boolean add(AppointmentInfo appointmentInfo) {
+    public boolean insert(AppointmentInfo appointmentInfo) {
 
         String sql = "INSERT INTO appointmentinfo VALUES (0, ?, ?, ?, ?)";
 
