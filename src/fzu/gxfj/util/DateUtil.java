@@ -18,7 +18,7 @@ public class DateUtil {
     }
 
     /**
-     * j 将日期类转换成字符串
+     *  将日期类转换成字符串
      * @param d 要转换的日期
      * @param format 转化的格式 如 yyyy-MM-dd hh:mm:ss
      * @return 返回字符串形式的日期
