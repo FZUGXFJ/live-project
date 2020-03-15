@@ -25,9 +25,25 @@
             window.location.href="indexServlet?action=管理员登录";
         }
     </script>
+
+    <%
+        String path = request.getContextPath();
+        String basePath=null;
+        basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+        int port=request.getServerPort();
+
+        if(port==80){
+            basePath=request.getScheme()+"://"+request.getServerName()+path;
+
+        }else{
+            basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+
+        }
+        request.setAttribute("basePath", basePath);
+    %>
 </head>
 <body>
-    <div id="wrap">
+    <div id="wrap" style="background-image:url('${basePath}/image/index.jpg');">
     </br></br></br>
     </br></br></br>
        <div id="main1">

@@ -26,7 +26,7 @@ public class AppointmentInfoDAO {
             appointment.setMaskNum(rs.getInt("maskNum"));
             appointment.setMaxMaskAppointment(rs.getInt("maxMaskAppointment"));
         } catch (SQLException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
 
         return appointment;
@@ -37,9 +37,9 @@ public class AppointmentInfoDAO {
      * @param appointmentInfo 要插入的场次信息，成功后的Id为在数据库中的Id
      * @return
      */
-    public boolean insert(AppointmentInfo appointmentInfo) {
+    public boolean add(AppointmentInfo appointmentInfo) {
 
-        String sql = "INSERT INTO appointmentInfo VALUES (id, ?, ?, ?, ?)";
+        String sql = "INSERT INTO appointmentInfo VALUES (0, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd hh:mm:ss"));
@@ -54,7 +54,7 @@ public class AppointmentInfoDAO {
             }
         } catch (SQLException e)
         {
-            e.getStackTrace();
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -62,10 +62,10 @@ public class AppointmentInfoDAO {
 
     //修改最大口罩数
     public boolean updateMaxNum(int maxNum){
-        AppointmentInfo appointmentInfo = new AppointmentInfo();
-        appointmentInfo.setMaskNum(maxNum);
+        AppointmentInfo appointment = new AppointmentInfo();
 
-        return true;
+        appointment.setMaxMaskAppointment(maxNum);
+        return updateLast(appointment);
     }
 
     /**
@@ -116,8 +116,16 @@ public class AppointmentInfoDAO {
 
         sql += " WHERE id = " + last.getId() + " ";
 
+        try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return true;
     }
-
+	
+	public int getCount() {///获取AppointmentInfo表记录总数
+		return 0;
+	}
 }
