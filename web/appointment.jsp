@@ -82,7 +82,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td class="info"><span><%=info.getBeginTime()%></span> 至 <span><%=info.getBeginTime()%></span></td>
+            <td class="info"><span><%=info.getBeginTime()%></span> 至 <span><%=info.getEndTime()%></span></td>
         </tr>
         
     </table>
