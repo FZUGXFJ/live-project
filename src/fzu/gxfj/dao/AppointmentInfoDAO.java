@@ -25,13 +25,9 @@ public class AppointmentInfoDAO {
             appointment = new AppointmentInfo();
 
             appointment.setId(rs.getInt("id"));
-<<<<<<< HEAD
-            appointment.setBeginTime(new Date(rs.getTimestamp("beginTime").getTime()));
-            appointment.setEndTime(new Date(rs.getTimestamp("endTime").getTime()));
-=======
             appointment.setBeginTime(DateUtil.t2d(rs.getTimestamp("beginTime")));
             appointment.setEndTime(DateUtil.t2d(rs.getTimestamp("endTime")));
->>>>>>> cc739382c1ffa19ee021135d39252b23e3418788
+
             appointment.setMaskNum(rs.getInt("maskNum"));
             appointment.setMaxMaskAppointment(rs.getInt("maxMaskAppointment"));
         } catch (SQLException e) {
