@@ -33,24 +33,24 @@
         <table id="tableInfo">
             <tr>
                 <td class="info" align="right">开放时间:</td>
-                <td><input id="Date1" name="name" type="date"/></td>
-                <td><input id="time1" name="name" type="time"/></td>
+                <td><input id="Date1" name="beginDate" type="date"/></td>
+                <td><input id="time1" name="beginTime" type="time"/></td>
 
             </tr>
             <tr>
                 <td class="info" align="right">截止时间:</td>
                 <td>
-                    <input id="Date2" name="name" type="date"/>
+                    <input id="Date2" name="endDate" type="date"/>
                 </td>
-                <td><input id="time2" name="name" type="time"/></td>
+                <td><input id="time2" name="endTime" type="time"/></td>
             </tr>
             <tr>
                 <td class="info" align="right">口罩总数:</td>
-                <td><input type="text" name="age" id="sum"/></td>
+                <td><input type="text" name="maskNum" id="sum"/></td>
             </tr>
             <tr>
                 <td class="info" align="right">最高可预约数量:</td>
-                <td><input id="Maxnum" name="classid" type="text" list="numList"/></td>
+                <td><input id="Maxnum" name="maxAppointment" type="text" list="numList" value="3"/></td>
                 <datalist id="numList">
                     <option>1</option>
                     <option>2</option>

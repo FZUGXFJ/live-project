@@ -22,8 +22,12 @@ public class Selection {
             if (appointment.getAppointmentNum() <= maxMask) {
                 appointment.setWin(true);
                 maxMask -= appointment.getAppointmentNum();
+                if (maxMask <= 0) {
+                    break;
+                }
                 appointmentDAO.update(appointment);
             }
         }
+        new AppointmentInfoDAO().updateMaxNum(maxMask);
     }
 }
