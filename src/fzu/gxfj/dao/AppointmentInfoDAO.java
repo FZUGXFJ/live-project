@@ -15,7 +15,7 @@ public class AppointmentInfoDAO {
      */
     public static AppointmentInfo getLastAppointmentInfo() {
         AppointmentInfo appointment = null;
-        String sql = "SELECT * FROM appointmentinfo ORDER BY endTime DESC LIMIT 1";
+        String sql = "SELECT * FROM appointmentinfo ORDER BY id DESC LIMIT 1";
 
         try (Connection connection = DBUtil.getConnection(); Statement statement = connection.createStatement()) {
 
@@ -25,8 +25,8 @@ public class AppointmentInfoDAO {
             appointment = new AppointmentInfo();
 
             appointment.setId(rs.getInt("id"));
-            appointment.setBeginTime(rs.getDate("beginTime"));
-            appointment.setEndTime(rs.getDate("endTime"));
+            appointment.setBeginTime(DateUtil.t2d(rs.getTimestamp("beginTime")));
+            appointment.setEndTime(DateUtil.t2d(rs.getTimestamp("endTime")));
             appointment.setMaskNum(rs.getInt("maskNum"));
             appointment.setMaxMaskAppointment(rs.getInt("maxMaskAppointment"));
         } catch (SQLException e) {
