@@ -53,8 +53,6 @@ public class AppointmentServlet extends HttpServlet {
 		appointment.setUserPhone(request.getParameter("phone"));
 		appointment.setAppointmentNum(Integer.parseInt(request.getParameter("num")));
 		appointment.setAppointmentsID(info.getId());
-		AppointmentDAO appointmentDAO = new AppointmentDAO();
-		AppointmentDAO.insert(appointment);
 		long appointTime = DateUtil.s2d(request.getParameter("dateTime")).getTime();
 		long beginTime = info.getBeginTime().getTime();
 		long endTime = info.getEndTime().getTime();
@@ -70,6 +68,8 @@ public class AppointmentServlet extends HttpServlet {
 			out.println("<body>");
 			out.println("<h1 align=center>预约成功！</h1>");
 			out.println("<p><a href='appointment.jsp'>返回</a>");
+			AppointmentDAO appointmentDAO = new AppointmentDAO();
+			AppointmentDAO.insert(appointment);
 		} else {
 			out.println("<title>预约失败</title>");
 			out.println("</head>");

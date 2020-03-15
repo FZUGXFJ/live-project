@@ -20,7 +20,7 @@ public class StartAppointServlet extends HttpServlet {
         AppointmentInfo newInfo = new AppointmentInfo();
         newInfo.setBeginTime(new Date());
         newInfo.setMaskNum(Integer.parseInt(request.getParameter("maskNum")));
-        newInfo.setEndTime(new Date(new Date().getTime() + 864000));
+        newInfo.setEndTime(new Date(new Date().getTime() + 86400000));
         newInfo.setMaxMaskAppointment(3);
         AppointmentInfoDAO.insert(newInfo);
         request.getRequestDispatcher("appointment.jsp").forward(request,response);

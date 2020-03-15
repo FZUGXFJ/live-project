@@ -25,14 +25,14 @@ public class AppointmentInfoDAO {
             appointment = new AppointmentInfo();
 
             appointment.setId(rs.getInt("id"));
-            appointment.setBeginTime(rs.getDate("beginTime"));
-            appointment.setEndTime(rs.getDate("endTime"));
+            appointment.setBeginTime(new Date(rs.getTimestamp("beginTime").getTime()));
+            appointment.setEndTime(new Date(rs.getTimestamp("endTime").getTime()));
             appointment.setMaskNum(rs.getInt("maskNum"));
             appointment.setMaxMaskAppointment(rs.getInt("maxMaskAppointment"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        System.out.println(DateUtil.d2s(appointment.getBeginTime()));
         return appointment;
     }
 
@@ -46,8 +46,8 @@ public class AppointmentInfoDAO {
         String sql = "INSERT INTO appointmentinfo VALUES (0, ?, ?, ?, ?)";
 
         try (Connection connection = DBUtil.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd hh:mm:ss"));
-            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime(), "yyyy-MM-dd hh:mm:ss"));
+            preparedStatement.setString(1, DateUtil.d2s(appointmentInfo.getBeginTime(), "yyyy-MM-dd HH:mm:ss"));
+            preparedStatement.setString(2, DateUtil.d2s(appointmentInfo.getEndTime(), "yyyy-MM-dd HH:mm:ss"));
             preparedStatement.setInt(3, appointmentInfo.getMaskNum());
             preparedStatement.setInt(4, appointmentInfo.getMaxMaskAppointment());
             preparedStatement.execute();
