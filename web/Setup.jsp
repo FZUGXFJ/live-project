@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="CSS/selectStyle.css"/>
-    <title>Title</title>
+    <title>预约设置</title>
     <script>
         function exportlist(){
             window.location.href="servlet";
         }
     </script>
+    <%
+        String path = request.getContextPath();
+        String basePath=null;
+        basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+        int port=request.getServerPort();
+
+        if(port==80){
+            basePath=request.getScheme()+"://"+request.getServerName()+path;
+
+        }else{
+            basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
+
+        }
+        request.setAttribute("basePath", basePath);
+    %>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" style="background-image:url('${basePath}/image/select.jpg');background-repeat: no-repeat;">
     <div id="BackImg"></div>
     <form id="addstu" name="editstu" method="post" action="">
         <input type="hidden" name="id" id="id" value="<?php echo $stu['id'];?>"/>
