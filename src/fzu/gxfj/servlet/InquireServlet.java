@@ -35,16 +35,16 @@ public class InquireServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		String number = request.getParameter("number");
-		/*AppointmentsDAO appointmentsDAO = new AppointmentsDAO();
-		Appointment appointment = appointmentsDAO.query(number);
+		AppointmentsDAO appointmentsDAO = new AppointmentsDAO();
+		Appointment appointment = appointmentsDAO.getAppointment(number);
 		if(appointment.getIsWin()) {
 			request.setAttribute("isWin", appointment.getIsWin());
 			request.setAttribute("userName", appointment.getUserName());
 			request.setAttribute("userID", appointment.getUserID());
-			request.setAttribute("telephoneNum", appointment.getTelephoneNum());
+			request.setAttribute("userTelephoneNum", appointment.getUserTelephoneNum());
 			request.setAttribute("appointsmentNum", appointment.getAppointmentNum());
 		}
-		request.getRequestDispatcher("select.jsp").forward(request, response);*/
+		request.getRequestDispatcher("select.jsp").forward(request, response);
 	}
 
 	/**

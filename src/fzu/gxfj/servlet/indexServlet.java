@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.java.swing.plaf.windows.resources.windows;
 
-/*import fzu.gxfj.dao.AppointmentInfoDAO;
-import fzu.gxfj.pojo.Appointment;*/
+import fzu.gxfj.dao.AppointmentInfoDAO;
+import fzu.gxfj.pojo.Appointment;
 
 /**
  * Servlet implementation class indexServlet
@@ -34,24 +33,24 @@ public class indexServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
-		String flag = request.getParameter("flag");
+		String action = request.getParameter("action");
 		String result = null;
-		if(flag != null) {
-			if(flag.equals("Ô¤Ô¼")) {
-				/*AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
-				AppointmentInfo appointmentInfo = appointmentInfoDAO.getInfo();
-				request.setAttribute("maxAppointment", appointmentInfo.getMaxAppointment);*/
+		if(action != null) {
+			if(action.equals("Ô¤Ô¼")) {
+				AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
+				AppointmentInfo appointmentInfo = appointmentInfoDAO.getLastAppointmentInfo();
+				request.setAttribute("maxAppointment", appointmentInfo.getMaxAppointment);
 				result = "Appointment.jsp";
 			}
-			else if(flag.equals("ï¿½ï¿½Ñ¯")) {
+			else if(action.equals("²éÑ¯")) {
 				result = "Select.jsp";
 			}
-			else if(flag.equals("ï¿½ï¿½Ñ¯")) {
+			else if(action.equals("¹ÜÀíÔ±µÇÂ¼")) {
 				result = "SetUp.jsp";
 			}
 		}
 		else {
-			System.out.print("falgÎªï¿½ï¿½");
+			System.out.print("falgÎª¿Õ");
 		}
 		request.getRequestDispatcher(result).forward(request, response);
 	}
