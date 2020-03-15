@@ -1,6 +1,7 @@
 package fzu.gxfj.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -10,14 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.xdevapi.Result;
-import com.sun.org.apache.bcel.internal.generic.Select;
-
 import fzu.gxfj.dao.AppointmentDAO;
 import fzu.gxfj.dao.AppointmentInfoDAO;
 import fzu.gxfj.pojo.Appointment;
 import fzu.gxfj.pojo.AppointmentInfo;
 import fzu.gxfj.service.Selection;
+import fzu.gxfj.util.DateUtil;
 
 /**
  * Servlet implementation class AppointmentServlet
@@ -40,103 +39,47 @@ public class AppointmentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.setCharacterEncoding("utf-8");
-		String flag = request.getParameter("flag");
-		String result = null;
-		if(flag != null && flag.equals("‘§‘º")) {
-			result = appoint();
-		}
-		else if(flag != null && flag.equals("…Ë∂®ø⁄’÷◊‹º∆")){
-			result = setMaxNum();
-		}
-		else if(flag != null && flag.equals("Õ£÷π‘§‘º")) {
-			result = stopAppoint();
-		}
-		
-		/**
-		 * »Áπ˚ «◊™µΩ‘§‘ºΩÁ√Ê£¨…Ë÷√≤Œ ˝
-		 */
-		if(result.equals("Appointment.jsp")) {
-			AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
-			AppointmentInfo appointmentInfo = appointmentInfoDAO.getLastAppointmentInfo();
-			int maxAppointment = appointmentInfo.getMaxAppointment();
-			Date beginTime = appointmentInfo.getBeginTime();
-			Date endTime = appointmentInfo.getEndTime();
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//…Ë÷√»’∆⁄∏Ò Ω
-			String beginTimeString = df.format(beginTime);
-			String endTimeString = df.format(endTime);
-			request.setAttribute("maxAppointment", maxAppointment);
-			request.setAttribute("beginTime", beginTimeString);
-			request.setAttribute("endTime", endTimeString);
-			request.getRequestDispatcher(result).forward(request, response);
-		}
-		request.getRequestDispatcher(result).forward(request, response);
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-	
-	/*¥¶¿Ì‘§‘º±Ìµ•*/
-	private String appoint() {
-		String result;
-		String userName =  request.getParameter("name");
-		String userID = request.getParameter("ID");
-		String userTelephoneNum = request.getParameter("telephoneNum");
-		String appointmentNum = request.getParameter("num");
-		//ºÏ≤‚±Ìµ• «∑ÒŒ™ø’
-		if(userName == null || userID == null || userTelephoneNum == null || appointmentNum == null) {
-			request.setAttribute("error", "±Ìµ•Œ™ø’£°");
-			result = "Appointment.jsp";
-		}
-		else {
-			//‘§‘º≥…π¶£¨≤Â»Î ˝æ›ø‚
-			Appointment appointment = new Appointment(userName , userID , userTelephoneNum , appointmentNum);
-			AppointmentDAO appointmentDAO = new AppointmentDAO();
-			appointmentDAO.add(appointment);
-			//Ω´‘§‘º≥…π¶…ËŒ™≤Œ ˝£¨◊™µΩ ◊“≥
-			request.setAttribute("remind", "‘§‘º≥…π¶");
-			result = "index.jsp";
-		}
-		return result;
-	}
-	
-	private String setMaxNum() {
-		String result;
-		String maxNum = request.getParameter("maxNum");
-		//ºÏ—È±Ìµ• «∑ÒŒ™ø’
-		if(maxNum == null ) {
-			request.setAttribute("error", "±Ìµ•Œ™ø’£°");
-			result = "Appointment.jsp";
-		}
-		else {
-			int mm = Integer.parseInt(maxNum);
-			AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
-			appointmentInfoDAO.updateMaxNum(mm);
-			result = "Appointment.jsp";
-		}
-		return result;
-	}
-	
-	private String stopAppoint() {
-		String result;
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//…Ë÷√»’∆⁄∏Ò Ω
-        String endDate = df.format(new Date());// new Date()Œ™ªÒ»°µ±«∞œµÕ≥ ±º‰
-        AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
-        AppointmentInfo appointmentInfo = AppointmentInfoDAO.getLastAppointmentInfo();
-        appointmentInfo.setEndingTime(endDate);
-        appointmentInfoDAO.update(appointmentInfo);
-        Selection selection = new Selection();
-        selection.select(appointmentInfo);
-        request.setAttribute("remind", "‘§‘ºΩ· ¯");
-        result = "index.jsp";
+		AppointmentInfoDAO infoDAO = new AppointmentInfoDAO();
+		AppointmentInfo info = infoDAO.getLastAppointmentInfo();
 
-	}
+		request.setCharacterEncoding("utf-8");
+		Appointment appointment = new Appointment();
+		appointment.setUserId(request.getParameter("id"));
+		appointment.setUserName(request.getParameter("name"));
+		appointment.setUserPhone(request.getParameter("phone"));
+		appointment.setAppointmentNum(Integer.parseInt(request.getParameter("num")));
+		appointment.setAppointmentsID(info.getId());
+		AppointmentDAO appointmentDAO = new AppointmentDAO();
+		appointmentDAO.add(appointment);
+		long appointTime = DateUtil.s2d(request.getParameter("dateTime")).getTime();
+		long beginTime = info.getBeginTime().getTime();
+		long endTime = info.getEndTime().getTime();
+		request.setAttribute("appointment", appointment);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head>");
 
+		if(appointTime >= beginTime && appointTime <=endTime) {
+			out.println("<title>È¢ÑÁ∫¶ÊàêÂäü</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1 align=center>È¢ÑÁ∫¶ÊàêÂäüÔºÅ</h1>");
+			out.println("<p><a href='appointment.jsp'>ËøîÂõû</a>");
+		} else {
+			out.println("<title>È¢ÑÁ∫¶Â§±Ë¥•</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1 align=center>È¢ÑÁ∫¶Â§±Ë¥•ÔºåÂΩìÂâç‰∏çÊòØÈ¢ÑÁ∫¶Êó∂Èó¥ÔºÅ</h1>");
+			out.println("<p><a href='appointment.jsp'>ËøîÂõû</a>");
+		}
+		out.println("</body>");
+		out.println("</html>");
+		out.flush();
+		out.close();
+	}
 }
