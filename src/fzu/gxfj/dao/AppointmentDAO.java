@@ -11,4 +11,7 @@ public class AppointmentDAO {
     }
 
     public void update (Appointment appointment) {}
+
+    //根据编号获得appoint的数据
+    public Appointment getAppointment(String number);
 }
