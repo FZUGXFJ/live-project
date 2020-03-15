@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class AppointmentInfoDAO {
 
-    public AppointmentInfo getLastAppointmentInfo() {
+    public static AppointmentInfo getLastAppointmentInfo() {
         AppointmentInfo appointment = null;
         String sql = "SELECT * FROM appointmentinfo ORDER BY endTime DESC LIMIT 1";
 
@@ -37,7 +37,7 @@ public class AppointmentInfoDAO {
      * @param appointmentInfo 要插入的场次信息，成功后的Id为在数据库中的Id
      * @return
      */
-    public boolean insert(AppointmentInfo appointmentInfo) {
+    public static boolean insert(AppointmentInfo appointmentInfo) {
 
         String sql = "INSERT INTO appointmentinfo VALUES (0, ?, ?, ?, ?)";
 
@@ -61,7 +61,7 @@ public class AppointmentInfoDAO {
     }
 
     //修改最大口罩数
-    public boolean updateMaxNum(int maxNum){
+    public static boolean updateMaxNum(int maxNum){
         AppointmentInfo appointment = new AppointmentInfo();
 
         appointment.setMaxMaskAppointment(maxNum);
@@ -73,7 +73,7 @@ public class AppointmentInfoDAO {
      * @param appointmentInfo
      * @return
      */
-    public boolean updateLast(AppointmentInfo appointmentInfo){
+    public static boolean updateLast(AppointmentInfo appointmentInfo){
 
         AppointmentInfo last = getLastAppointmentInfo();
 
@@ -126,7 +126,7 @@ public class AppointmentInfoDAO {
         return true;
     }
 	
-	public int getCount() {///获取AppointmentInfo表记录总数
+	public static int getCount() {///获取AppointmentInfo表记录总数
 		return 0;
 	}
 }

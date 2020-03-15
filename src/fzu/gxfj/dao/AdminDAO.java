@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AdminDAO {
-	public Admin getAdminUser(String account) {
+	public static Admin getAdminUser(String account) {
 		Admin admin = null;
 		String sql = "SELECT * FROM admin WHERE account = " + account + " ; ";
 
