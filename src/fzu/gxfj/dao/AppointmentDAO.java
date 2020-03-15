@@ -18,20 +18,11 @@ public class AppointmentDAO {
     public void update (Appointment appointment) {}
 
     //根据编号获得appoint的数据
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Appointment getAppointment(String number);
-    //将预约成功的市民插入数据库
-    public void add(Appointment appointment);
-=======
-    public Appointment getAppointment(String number){
-	    return null;
-    }
->>>>>>> 87b48b576d3fca0ba0ce3d8ea9063426482f9e20
-}
-=======
     public Appointment getAppointment(String number) {
         return null;
     }
+    //将预约成功的市民插入数据库
+    public void add(Appointment appointment) {
+
+    }
 }
->>>>>>> 5a839c86309b3f682935266c1078c04eb200e492

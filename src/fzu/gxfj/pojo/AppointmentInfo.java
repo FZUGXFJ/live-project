@@ -3,17 +3,17 @@ package fzu.gxfj.pojo;
 import java.sql.Date;
 
 public class AppointmentInfo {
-    private int id;
+    private Integer id;
     private Date beginTime;
     private Date endTime;
-    private int maskNum;
-    private int maxMaskAppointment;
+    private Integer maskNum;
+    private Integer maxMaskAppointment;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -33,19 +33,19 @@ public class AppointmentInfo {
         this.endTime = endTime;
     }
 
-    public int getMaskNum() {
+    public Integer getMaskNum() {
         return maskNum;
     }
 
-    public void setMaskNum(int maskNum) {
+    public void setMaskNum(Integer maskNum) {
         this.maskNum = maskNum;
     }
 
-    public int getMaxMaskAppointment() {
+    public Integer getMaxMaskAppointment() {
         return maxMaskAppointment;
     }
 
-    public void setMaxMaskAppointment(int maxMaskAppointment) {
+    public void setMaxMaskAppointment(Integer maxMaskAppointment) {
         this.maxMaskAppointment = maxMaskAppointment;
     }
 
