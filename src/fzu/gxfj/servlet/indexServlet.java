@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sun.java.swing.plaf.windows.resources.windows;
 
-import fzu.gxfj.dao.AppointmentInfoDAO;
-import fzu.gxfj.pojo.Appointment;
+/*import fzu.gxfj.dao.AppointmentInfoDAO;
+import fzu.gxfj.pojo.Appointment;*/
 
 /**
  * Servlet implementation class indexServlet
@@ -38,20 +38,20 @@ public class indexServlet extends HttpServlet {
 		String result = null;
 		if(flag != null) {
 			if(flag.equals("Ô¤Ô¼")) {
-				AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
+				/*AppointmentInfoDAO appointmentInfoDAO = new AppointmentInfoDAO();
 				AppointmentInfo appointmentInfo = appointmentInfoDAO.getInfo();
-				request.setAttribute("maxAppointment", appointmentInfo.getMaxAppointment);
+				request.setAttribute("maxAppointment", appointmentInfo.getMaxAppointment);*/
 				result = "Appointment.jsp";
 			}
-			else if(flag.equals("²éÑ¯")) {
+			else if(flag.equals("ï¿½ï¿½Ñ¯")) {
 				result = "Select.jsp";
 			}
-			else if(flag.equals("²éÑ¯")) {
+			else if(flag.equals("ï¿½ï¿½Ñ¯")) {
 				result = "SetUp.jsp";
 			}
 		}
 		else {
-			System.out.print("falgÎª¿Õ");
+			System.out.print("falgÎªï¿½ï¿½");
 		}
 		request.getRequestDispatcher(result).forward(request, response);
 	}
