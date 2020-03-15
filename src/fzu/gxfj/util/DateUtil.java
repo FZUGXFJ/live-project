@@ -32,6 +32,18 @@ public class DateUtil {
         return simpleDateFormat.format(d);
     }
 
+    /**
+     *  将日期类转换成字符串
+     * @param d 要转换的日期
+     * @return 返回字符串形式的日期
+     */
+    public static String d2s(java.util.Date d)
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        return simpleDateFormat.format(d);
+    }
+
     public static Date s2d(String dateStr) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date = null;
